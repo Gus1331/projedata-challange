@@ -2,10 +2,7 @@ import entity.Funcionario;
 
 import java.math.BigDecimal;
 import java.time.LocalDate;
-import java.util.ArrayList;
-import java.util.Comparator;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 import java.util.stream.Collectors;
 
 public class Main {
@@ -28,20 +25,23 @@ public class Main {
         //3.2
         funcionarios.remove(funcionarios.stream().filter(funcionario -> funcionario.getNome().equals("João")).toList().get(0));
 
-        //3.3 aqui decidi optar por um laço de repetição construindo a string a ser exibida ao invés de usar a lógica feita em toString() de funcionário
-//        for (Funcionario f : funcionarios) {
-//            System.out.printf(
-//                    """
-//                            Nome: %s | Nascimento: %d/%d/%d | Salário: %s | Função: %s
-//                             """,
-//                    f.getNome(),
-//                    f.getDtNascimento().getDayOfMonth(),
-//                    f.getDtNascimento().getMonthValue(),
-//                    f.getDtNascimento().getYear(),
-//                    String.format(Locale.GERMANY, "%,.2f", f.getSalario()),
-//                    f.getFuncao()
-//            );
-//        }
+        //3.3
+        // aqui decidi optar por um laço de repetição construindo a string.
+        // porém eu refiz esta funcionalidade sobrepondo toString() de funcionário que utilizei nos métodos seguintes
+        System.out.println("Todos funcionários:");
+        for (Funcionario f : funcionarios) {
+            System.out.printf("""
+                            Nome: %s | Nascimento: %d/%d/%d | Salário: %s | Função: %s
+                            """,
+                    f.getNome(),
+                    f.getDtNascimento().getDayOfMonth(),
+                    f.getDtNascimento().getMonthValue(),
+                    f.getDtNascimento().getYear(),
+                    String.format(Locale.GERMANY, "%,.2f", f.getSalario()),
+                    f.getFuncao()
+            );
+        }
+        System.out.println("\n\n");
 
         //3.4
         for (Funcionario f : funcionarios) {
@@ -52,30 +52,38 @@ public class Main {
         Map<String, List<Funcionario>> funcionarioMap = funcionarios.stream().collect(Collectors.groupingBy(Funcionario::getFuncao));
 
         //3.6
+        System.out.println("Funcionários agrupados por função: ");
         funcionarioMap.values().forEach(
                 listaFuncionarios -> {
-                    //listaFuncionarios.forEach(funcionario -> System.out.println(funcionario.toString()));
+                    listaFuncionarios.forEach(funcionario -> System.out.println(funcionario.toString()));
                 }
         );
+        System.out.println("\n\n");
 
         //3.8
+        System.out.println("Funcionários que fazem aniversário entre mês 10 e 12");
         funcionarios.stream().filter(funcionario -> funcionario.getDtNascimento().getMonthValue() >= 10).forEach(System.out::println);
+        System.out.println("\n\n");
 
         //3.9
-        System.out.println(funcionarios.stream().min(Comparator.comparing(Funcionario::getDtNascimento)));
+        System.out.println("Funcionário mais velho: " + (funcionarios.stream().min(Comparator.comparing(Funcionario::getDtNascimento))).orElse(null));
+        System.out.println("\n\n");
 
         //3.10
+        System.out.println("Ordém alfabética: ");
         funcionarios.stream().sorted(Comparator.comparing(Funcionario::getNome)).forEach(System.out::println);
+        System.out.println("\n\n");
 
         //3.11
         BigDecimal somaTotalSalarios = BigDecimal.valueOf(0.0);
-        for(Funcionario f: funcionarios){
+        for (Funcionario f : funcionarios) {
             somaTotalSalarios = BigDecimal.valueOf(somaTotalSalarios.doubleValue() + f.getSalario().doubleValue());
         }
-        System.out.println(somaTotalSalarios);
+        System.out.println("Soma total dos salários: %.2f".formatted(somaTotalSalarios));
+        System.out.println("\n\n");
 
         //3.12
-        for(Funcionario f: funcionarios){
+        for (Funcionario f : funcionarios) {
             System.out.println("""
                     O funcionário: %s, ganha %.0f salário(s) mínimo(s)""".formatted(
                     f.getNome(), Math.floor(f.getSalario().doubleValue() / 1212.0))
