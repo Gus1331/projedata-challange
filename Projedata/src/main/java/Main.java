@@ -61,8 +61,8 @@ public class Main {
         System.out.println("\n\n");
 
         //3.8
-        System.out.println("Funcionários que fazem aniversário entre mês 10 e 12");
-        funcionarios.stream().filter(funcionario -> funcionario.getDtNascimento().getMonthValue() >= 10).forEach(System.out::println);
+        System.out.println("Funcionários que fazem aniversário no mês 10 e 12");
+        funcionarios.stream().filter(funcionario -> funcionario.getDtNascimento().getMonthValue() == 10 || funcionario.getDtNascimento().getMonthValue() == 12).forEach(System.out::println);
         System.out.println("\n\n");
 
         //3.9
