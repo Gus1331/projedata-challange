@@ -65,10 +65,9 @@ Diante disso, você deve desenvolver um projeto java, com os seguintes requisito
 <br>Nome: Caio | Nascimento: 2/5/1961 | Salário: 10.819,75 | Função: Coordenador
 <br>Nome: Arthur | Nascimento: 31/3/1993 | Salário: 4.479,02 | Função: Contador
 <br>
-<br>Funcionários que fazem aniversário entre mês 10 e 12
+<br>Funcionários que fazem aniversário no mês 10 e 12
 <br>Nome: Maria | Nascimento: 18/10/2000 | Salário: 2.210,38 | Função: Operador
 <br>Nome: Miguel | Nascimento: 14/10/1988 | Salário: 21.031,87 | Função: Diretor
-<br>Nome: Heitor | Nascimento: 5/11/1999 | Salário: 1.740,99 | Função: Operador
 <br>
 <br>Funcionário mais velho: Nome: Caio | Nascimento: 2/5/1961 | Salário: 10.819,75 | Função: Coordenador
 <br>
